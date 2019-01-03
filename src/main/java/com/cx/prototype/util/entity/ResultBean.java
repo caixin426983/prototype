@@ -1,7 +1,6 @@
 package com.cx.prototype.util.entity;
 
 
-
 public class ResultBean<T> {
 
     private int code;
@@ -13,6 +12,9 @@ public class ResultBean<T> {
     public ResultBean() {
     }
 
+    public static ResultBean error() {
+        return error(Constant.FAIL_CODE, Constant.FAIL_CN);
+    }
 
     public static ResultBean error(int code, String message) {
         ResultBean resultBean = new ResultBean();
@@ -23,15 +25,15 @@ public class ResultBean<T> {
 
     public static ResultBean success() {
         ResultBean resultBean = new ResultBean();
-        resultBean.setCode(200);
-        resultBean.setMessage("success");
+        resultBean.setCode(Constant.SUCCESS_CODE);
+        resultBean.setMessage(Constant.SUCCESS);
         return resultBean;
     }
 
-    public static  ResultBean success(Object data) {
+    public static ResultBean success(Object data) {
         ResultBean resultBean = new ResultBean();
-        resultBean.setCode(200);
-        resultBean.setMessage("success");
+        resultBean.setCode(Constant.SUCCESS_CODE);
+        resultBean.setMessage(Constant.SUCCESS);
         resultBean.setData(data);
         return resultBean;
     }
