@@ -1,7 +1,7 @@
 package com.cx.prototype.util.entity;
 
 
-public class ResultBean<T> {
+public class ResultBean {
 
     private int code;
 
@@ -12,25 +12,24 @@ public class ResultBean<T> {
     public ResultBean() {
     }
 
-    public static ResultBean error() {
-        return error(Constant.FAIL_CODE, Constant.FAIL_CN);
+    public static ResultBean FAIL() {
+        return FAIL(Constant.FAIL_CODE, Constant.FAIL_CN);
     }
 
-    public static ResultBean error(int code, String message) {
+    public static ResultBean FAIL(int code, String message) {
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(code);
         resultBean.setMessage(message);
         return resultBean;
     }
 
-    public static ResultBean success() {
-        ResultBean resultBean = new ResultBean();
-        resultBean.setCode(Constant.SUCCESS_CODE);
-        resultBean.setMessage(Constant.SUCCESS);
-        return resultBean;
+
+    public static ResultBean SUCCESS() {
+        return SUCCESS(null);
     }
 
-    public static ResultBean success(Object data) {
+
+    public static ResultBean SUCCESS(Object data) {
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(Constant.SUCCESS_CODE);
         resultBean.setMessage(Constant.SUCCESS);
