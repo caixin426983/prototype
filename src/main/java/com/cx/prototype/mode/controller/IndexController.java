@@ -2,6 +2,7 @@ package com.cx.prototype.mode.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cx.prototype.mode.entity.UserInfo;
+import com.cx.prototype.util.entity.Constant;
 import com.cx.prototype.util.entity.ResultBean;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -35,7 +36,7 @@ public class IndexController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return ResultBean.success(jsonObject);
+        return ResultBean.SUCCESS(jsonObject);
     }
 
     /**
@@ -43,9 +44,35 @@ public class IndexController {
      *
      * @return
      */
-    @RequestMapping(value = "/unauth")
+    @RequestMapping(value = "/noLogin")
+    @ResponseBody
+    public ResultBean noLogin() {
+        return ResultBean.FAIL(Constant.NO_LOGIN_CODE, Constant.NO_LOGIN_CN);
+    }
+
+    /**
+     * 无权限
+     *
+     * @return
+     */
+    @RequestMapping(value = "/noLogin")
     @ResponseBody
     public ResultBean unauth() {
-        return ResultBean.error(403, "未登录");
+        return ResultBean.FAIL(Constant.NO_AUTH_CODE, Constant.NO_AUTH_CN);
     }
+
+    /**
+     * 用户退出
+     *
+     * @return
+     */
+    @RequestMapping(value = "logout")
+    public ResultBean logout() {
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return ResultBean.SUCCESS();
+    }
+
+
+
 }
