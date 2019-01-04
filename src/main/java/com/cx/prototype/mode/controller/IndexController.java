@@ -1,7 +1,9 @@
 package com.cx.prototype.mode.controller;
 
+
 import com.alibaba.fastjson.JSONObject;
 import com.cx.prototype.mode.entity.UserInfo;
+import com.cx.prototype.util.Utils;
 import com.cx.prototype.util.entity.Constant;
 import com.cx.prototype.util.entity.ResultBean;
 import org.apache.shiro.SecurityUtils;
@@ -10,9 +12,11 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 
 @Controller
 public class IndexController {
@@ -73,6 +77,21 @@ public class IndexController {
         return ResultBean.SUCCESS();
     }
 
+
+    /**
+     * 注册
+     *
+     * @param param
+     * @return
+     */
+    public ResultBean register(@RequestBody JSONObject param) {
+        UserInfo userInfo = Utils.parseObject(param, UserInfo.class);
+        userInfo.setSalt(Utils.getUUID());
+
+
+
+        return null;
+    }
 
 
 }
