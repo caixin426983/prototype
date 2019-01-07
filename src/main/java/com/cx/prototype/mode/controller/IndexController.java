@@ -48,7 +48,7 @@ public class IndexController {
      *
      * @return
      */
-    @RequestMapping(value = "/noLogin")
+    @RequestMapping(value = "/noLogin",method = RequestMethod.GET)
     @ResponseBody
     public ResultBean noLogin() {
         return ResultBean.FAIL(Constant.NO_LOGIN_CODE, Constant.NO_LOGIN_CN);
@@ -59,7 +59,7 @@ public class IndexController {
      *
      * @return
      */
-    @RequestMapping(value = "/noLogin")
+    @RequestMapping(value = "/unauth",method = RequestMethod.GET)
     @ResponseBody
     public ResultBean unauth() {
         return ResultBean.FAIL(Constant.NO_AUTH_CODE, Constant.NO_AUTH_CN);
@@ -70,7 +70,7 @@ public class IndexController {
      *
      * @return
      */
-    @RequestMapping(value = "logout")
+    @RequestMapping(value = "logout",method = RequestMethod.GET)
     public ResultBean logout() {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
@@ -87,9 +87,6 @@ public class IndexController {
     public ResultBean register(@RequestBody JSONObject param) {
         UserInfo userInfo = Utils.parseObject(param, UserInfo.class);
         userInfo.setSalt(Utils.getUUID());
-
-
-
         return null;
     }
 
