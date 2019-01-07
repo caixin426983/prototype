@@ -9,17 +9,15 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class IndexController {
 
 
     @RequestMapping(value = "/ajaxLogin", method = RequestMethod.POST)
-    @ResponseBody
     public ResultBean ajaxLogin(UserInfo userInfo) {
         JSONObject jsonObject = new JSONObject();
 
@@ -45,7 +43,6 @@ public class IndexController {
      * @return
      */
     @RequestMapping(value = "/noLogin")
-    @ResponseBody
     public ResultBean noLogin() {
         return ResultBean.FAIL(Constant.NO_LOGIN_CODE, Constant.NO_LOGIN_CN);
     }
@@ -55,8 +52,7 @@ public class IndexController {
      *
      * @return
      */
-    @RequestMapping(value = "/noLogin")
-    @ResponseBody
+    @RequestMapping(value = "/unauth")
     public ResultBean unauth() {
         return ResultBean.FAIL(Constant.NO_AUTH_CODE, Constant.NO_AUTH_CN);
     }
@@ -73,6 +69,9 @@ public class IndexController {
         return ResultBean.SUCCESS();
     }
 
-
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public ResultBean test() {
+        return ResultBean.SUCCESS("111111111111111111111");
+    }
 
 }
