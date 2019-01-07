@@ -29,7 +29,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @ServletComponentScan(basePackages = "com.cx.prototype.config")
 @ComponentScan(basePackages = {"com.cx.prototype.*"})
 @MapperScan(basePackages = {"com.cx.prototype.mode.mapper"})
-//@EnableSwagger2
+@EnableSwagger2
 //@EnableCaching
 public class PrototypeApplication {
 
