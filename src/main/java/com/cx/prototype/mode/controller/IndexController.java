@@ -1,6 +1,5 @@
 package com.cx.prototype.mode.controller;
 
-
 import com.alibaba.fastjson.JSONObject;
 import com.cx.prototype.mode.entity.UserInfo;
 import com.cx.prototype.util.Utils;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 
 @Controller
 public class IndexController {
@@ -77,6 +75,10 @@ public class IndexController {
         return ResultBean.SUCCESS();
     }
 
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public ResultBean test() {
+        return ResultBean.SUCCESS("111111111111111111111");
+    }
 
     /**
      * 注册
