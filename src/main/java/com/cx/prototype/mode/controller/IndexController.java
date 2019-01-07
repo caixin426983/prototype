@@ -9,15 +9,17 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-@RestController
+@Controller
 public class IndexController {
 
 
     @RequestMapping(value = "/ajaxLogin", method = RequestMethod.POST)
+    @ResponseBody
     public ResultBean ajaxLogin(UserInfo userInfo) {
         JSONObject jsonObject = new JSONObject();
 
@@ -43,6 +45,7 @@ public class IndexController {
      * @return
      */
     @RequestMapping(value = "/noLogin")
+    @ResponseBody
     public ResultBean noLogin() {
         return ResultBean.FAIL(Constant.NO_LOGIN_CODE, Constant.NO_LOGIN_CN);
     }
@@ -52,7 +55,8 @@ public class IndexController {
      *
      * @return
      */
-    @RequestMapping(value = "/unauth")
+    @RequestMapping(value = "/noLogin")
+    @ResponseBody
     public ResultBean unauth() {
         return ResultBean.FAIL(Constant.NO_AUTH_CODE, Constant.NO_AUTH_CN);
     }
@@ -73,5 +77,21 @@ public class IndexController {
     public ResultBean test() {
         return ResultBean.SUCCESS("111111111111111111111");
     }
+
+    /**
+     * 注册
+     *
+     * @param param
+     * @return
+     */
+    public ResultBean register(@RequestBody JSONObject param) {
+        UserInfo userInfo = Utils.parseObject(param, UserInfo.class);
+        userInfo.setSalt(Utils.getUUID());
+
+
+
+        return null;
+    }
+
 
 }

@@ -1,12 +1,13 @@
 package com.cx.prototype.mode.entity;
 
-import java.io.Serializable;
-import java.util.List;
+import com.cx.prototype.util.entity.BaseEntity;
+
+/**
+ * 资源实体类
+ */
+public class SysPermission extends BaseEntity {
 
 
-public class SysPermission implements Serializable {
-
-    private Integer id;//主键.
     private String name;//名称.
     private String resourceType;//资源类型，[menu|button]
     private String url;//资源路径.
@@ -15,15 +16,6 @@ public class SysPermission implements Serializable {
     private String parentIds; //父编号列表
     private Boolean available = Boolean.FALSE;
 
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

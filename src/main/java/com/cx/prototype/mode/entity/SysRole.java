@@ -1,27 +1,19 @@
 package com.cx.prototype.mode.entity;
 
 
-import java.util.List;
+import com.cx.prototype.util.entity.BaseEntity;
 
 
-public class SysRole {
+/**
+ * 角色实体类
+ */
+public class SysRole extends BaseEntity {
 
 
-    private Integer id; // 编号
     private String role; // 角色标识程序中判断使用,如"admin",这个是唯一的:
     private String description; // 角色描述,UI界面显示使用
     private Boolean available = Boolean.FALSE; // 是否可用,如果不可用将不会添加给用户
 
-
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getRole() {
         return role;
