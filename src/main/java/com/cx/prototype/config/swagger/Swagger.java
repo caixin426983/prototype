@@ -1,23 +1,19 @@
 package com.cx.prototype.config.swagger;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.schema.ModelRef;
-import springfox.documentation.service.*;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.ApiKey;
 import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import static com.google.common.collect.Lists.newArrayList;
-
 import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 /**
  * @Description Swagger2接口配置类
@@ -29,7 +25,6 @@ import java.util.List;
 public class Swagger {
 
 
-
     @Bean
     public Docket createRestApi() {
 
@@ -39,14 +34,7 @@ public class Swagger {
                 paths(PathSelectors.any()).
                 build().
                 apiInfo(apiInfo()).
-                securitySchemes(securitySchemes()).
-                securityContexts(securityContexts());
-    }
-
-
-    private List<ApiKey> securitySchemes() {
-        return newArrayList(
-                new ApiKey("Authorization", "Authorization", "header"));
+                securitySchemes(securitySchemes());
     }
 
 
@@ -58,21 +46,10 @@ public class Swagger {
                 build();
     }
 
-    private List<SecurityContext> securityContexts() {
+    private List<ApiKey> securitySchemes() {
         return newArrayList(
-                SecurityContext.builder()
-                        .securityReferences(defaultAuth())
-                        .forPaths(PathSelectors.regex("^(?!auth).*$"))
-                        .build()
-        );
+                new ApiKey("Authorization", "Authorization", "header"));
     }
 
-    private List<SecurityReference> defaultAuth() {
-        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
-        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-        authorizationScopes[0] = authorizationScope;
-        return newArrayList(
-                new SecurityReference("Authorization", authorizationScopes));
-    }
 
 }
