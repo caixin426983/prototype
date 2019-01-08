@@ -80,17 +80,7 @@ public class IndexController {
         return ResultBean.SUCCESS("111111111111111111111");
     }
 
-    /**
-     * 注册
-     *
-     * @param param
-     * @return
-     */
-    public ResultBean register(@RequestBody JSONObject param) {
-        UserInfo userInfo = Utils.parseObject(param, UserInfo.class);
-        userInfo.setSalt(Utils.getUUID());
-        return null;
-    }
+
 
 
 }

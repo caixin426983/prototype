@@ -15,7 +15,7 @@ public class Test {
 
     public static void main(String[] args) {
         SimpleHash md5 = new SimpleHash("MD5", "123456", "admin8d78869f470951332959580424d4bf4f", 2);
-//        System.out.println(md5);
+        System.out.println(md5);
 
 
         Md5Hash md5Hash = new Md5Hash("123456", "admin8d78869f470951332959580424d4bf4f", 2);

@@ -49,6 +49,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/webjars/springfox-swagger-ui/**", "anon");
         //swagger  END
 
+        filterChainDefinitionMap.put("/user/register", "anon");
+
         filterChainDefinitionMap.put("/static/**", "anon");
         filterChainDefinitionMap.put("/ajaxLogin", "anon");
 

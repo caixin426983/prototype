@@ -21,6 +21,6 @@ public class Constant {
     public static final String NO_AUTH_CN = "无权限";
     public static final String ILLEGAL_CN = "非法的用户";
 
-
+    public static final String DEFAULT_PASSWORD = "123456";
 
 }
