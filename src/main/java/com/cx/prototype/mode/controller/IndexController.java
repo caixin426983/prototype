@@ -2,8 +2,7 @@ package com.cx.prototype.mode.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cx.prototype.mode.entity.UserInfo;
-import com.cx.prototype.util.Utils;
-import com.cx.prototype.util.entity.Constant;
+import com.cx.prototype.util.controller.BaseController;
 import com.cx.prototype.util.entity.ResultBean;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -11,18 +10,20 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
-public class IndexController {
+public class IndexController extends BaseController {
 
 
     @RequestMapping(value = "/ajaxLogin", method = RequestMethod.POST)
     @ResponseBody
-    public ResultBean ajaxLogin(UserInfo userInfo) {
+    public ResultBean ajaxLogin(HttpServletRequest request, HttpServletResponse response, UserInfo userInfo) {
         JSONObject jsonObject = new JSONObject();
 
         Subject subject = SecurityUtils.getSubject();
@@ -38,7 +39,7 @@ public class IndexController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return ResultBean.SUCCESS(jsonObject);
+        return this.getDataSuccess(request, response, jsonObject);
     }
 
     /**
@@ -46,10 +47,12 @@ public class IndexController {
      *
      * @return
      */
-    @RequestMapping(value = "/noLogin",method = RequestMethod.GET)
+    @RequestMapping(value = "/noLogin", method = RequestMethod.GET)
     @ResponseBody
     public ResultBean noLogin() {
-        return ResultBean.FAIL(Constant.NO_LOGIN_CODE, Constant.NO_LOGIN_CN);
+//        return ResultBean.FAIL(Constant.NO_LOGIN_CODE, Constant.NO_LOGIN_CN);
+
+        return this.fail();
     }
 
     /**
@@ -57,10 +60,10 @@ public class IndexController {
      *
      * @return
      */
-    @RequestMapping(value = "/unauth",method = RequestMethod.GET)
+    @RequestMapping(value = "/unauth", method = RequestMethod.GET)
     @ResponseBody
     public ResultBean unauth() {
-        return ResultBean.FAIL(Constant.NO_AUTH_CODE, Constant.NO_AUTH_CN);
+        return this.fail();
     }
 
     /**
@@ -68,19 +71,17 @@ public class IndexController {
      *
      * @return
      */
-    @RequestMapping(value = "logout",method = RequestMethod.GET)
-    public ResultBean logout() {
+    @RequestMapping(value = "logout", method = RequestMethod.GET)
+    public ResultBean logout(HttpServletRequest request, HttpServletResponse response) {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
-        return ResultBean.SUCCESS();
+        return this.success(request, response);
     }
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public ResultBean test() {
-        return ResultBean.SUCCESS("111111111111111111111");
+    public ResultBean test(HttpServletRequest request, HttpServletResponse response) {
+        return this.getDataSuccess(request, response, "11111111111111111111111");
     }
-
-
 
 
 }

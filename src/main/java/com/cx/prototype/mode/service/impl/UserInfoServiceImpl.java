@@ -1,16 +1,17 @@
 package com.cx.prototype.mode.service.impl;
 
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.cx.prototype.mode.entity.UserInfo;
 import com.cx.prototype.mode.mapper.UserInfoMapper;
 import com.cx.prototype.mode.service.UserInfoService;
 import com.cx.prototype.util.Utils;
+import com.cx.prototype.util.entity.ResultBean;
+import com.cx.prototype.util.service.CrudService;
 import com.cx.prototype.util.shiro.ShiroUtil;
 import org.springframework.stereotype.Service;
 
 
 @Service
-public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> implements UserInfoService {
+public class UserInfoServiceImpl extends CrudService<UserInfoMapper, UserInfo> implements UserInfoService {
 
 
     @Override
@@ -21,10 +22,10 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     }
 
     @Override
-    public Integer save(UserInfo userInfo) {
+    public ResultBean save(ResultBean result, UserInfo userInfo) {
         userInfo.setSalt(Utils.getUUID());//设置盐值
-        userInfo.setPassword(ShiroUtil.getPassword(userInfo));
-        return this.baseMapper.insert(userInfo);
+        userInfo.setPassword(ShiroUtil.getPassword(userInfo));//设置加盐后的密码
+        return super.save(result, userInfo);
     }
 
 

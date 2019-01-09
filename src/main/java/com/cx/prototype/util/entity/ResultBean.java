@@ -1,40 +1,81 @@
 package com.cx.prototype.util.entity;
 
 
+import com.alibaba.fastjson.JSONObject;
+
 public class ResultBean {
 
     private int code;
 
     private String message;
 
-    private Object data;
+    private JSONObject data = new JSONObject();
 
     public ResultBean() {
     }
 
-    public static ResultBean FAIL() {
+    /**
+     * 默认失败方法
+     *
+     * @return
+     */
+    public ResultBean FAIL() {
         return FAIL(Constant.FAIL_CODE, Constant.FAIL_CN);
     }
 
-    public static ResultBean FAIL(int code, String message) {
-        ResultBean resultBean = new ResultBean();
-        resultBean.setCode(code);
-        resultBean.setMessage(message);
-        return resultBean;
+    /**
+     * 设置为失败,自定义附加消息
+     *
+     * @param message
+     * @return
+     */
+    public ResultBean FAIL(String message) {
+        return FAIL(Constant.FAIL_CODE, message);
     }
 
-
-    public static ResultBean SUCCESS() {
-        return SUCCESS(null);
+    /**
+     * 设置为失败,自定义
+     *
+     * @param code
+     * @param message
+     * @return
+     */
+    public ResultBean FAIL(int code, String message) {
+        this.setCode(code);
+        this.setMessage(message);
+        return this;
     }
 
+    /**
+     * 默认成功
+     *
+     * @return
+     */
+    public ResultBean SUCCESS() {
+        return SUCCESS(Constant.SUCCESS_CODE, Constant.SUCCESS);
+    }
 
-    public static ResultBean SUCCESS(Object data) {
-        ResultBean resultBean = new ResultBean();
-        resultBean.setCode(Constant.SUCCESS_CODE);
-        resultBean.setMessage(Constant.SUCCESS);
-        resultBean.setData(data);
-        return resultBean;
+    /**
+     * 成功——自定义消息
+     *
+     * @param message
+     * @return
+     */
+    public ResultBean SUCCESS(String message) {
+        return SUCCESS(Constant.SUCCESS_CODE, message);
+    }
+
+    /**
+     * 成功——自定义状态码+消息
+     *
+     * @param code
+     * @param message
+     * @return
+     */
+    public ResultBean SUCCESS(int code, String message) {
+        this.setCode(code);
+        this.setMessage(message);
+        return this;
     }
 
     public int getCode() {
@@ -57,7 +98,19 @@ public class ResultBean {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(JSONObject data) {
         this.data = data;
+    }
+
+    /**
+     * 添加数据
+     *
+     * @param key
+     * @param data
+     * @return
+     */
+    public ResultBean addData(String key, Object data) {
+        this.data.put(key, data);
+        return this;
     }
 }
