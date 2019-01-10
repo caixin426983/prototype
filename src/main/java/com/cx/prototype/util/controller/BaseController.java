@@ -34,7 +34,7 @@ public class BaseController {
      * @return
      */
     public ResultBean getDataSuccess(HttpServletRequest request, HttpServletResponse response, Object data) {
-        return success(request, response).addData("data", data);
+        return success(request, response).addData(data);
     }
 
 

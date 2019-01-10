@@ -9,7 +9,7 @@ public class ResultBean {
 
     private String message;
 
-    private JSONObject data = new JSONObject();
+    private Object data = new Object();
 
     public ResultBean() {
     }
@@ -105,12 +105,11 @@ public class ResultBean {
     /**
      * 添加数据
      *
-     * @param key
      * @param data
      * @return
      */
-    public ResultBean addData(String key, Object data) {
-        this.data.put(key, data);
+    public ResultBean addData(Object data) {
+        this.data = data;
         return this;
     }
 }
