@@ -1,5 +1,6 @@
 package com.cx.prototype.mode.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cx.prototype.mode.entity.UserInfo;
 import com.cx.prototype.mode.mapper.UserInfoMapper;
 import com.cx.prototype.mode.service.UserInfoService;
@@ -22,10 +23,13 @@ public class UserInfoServiceImpl extends CrudService<UserInfoMapper, UserInfo> i
     }
 
     @Override
-    public ResultBean save(ResultBean result, UserInfo userInfo) {
+    public ResultBean save(ResultBean result, JSONObject param) {
+        UserInfo userInfo = Utils.parseObject(param, UserInfo.class);
+
         userInfo.setSalt(Utils.getUUID());//设置盐值
         userInfo.setPassword(ShiroUtil.getPassword(userInfo));//设置加盐后的密码
-        return super.save(result, userInfo);
+        int i = super.saveNoSession(userInfo);
+        return result.SUCCESS();
     }
 
 

@@ -9,7 +9,6 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.crazycake.shiro.RedisManager;
 import org.crazycake.shiro.RedisSessionDAO;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
@@ -21,14 +20,7 @@ import java.util.Properties;
 @Configuration
 public class ShiroConfig {
 
-    @Value("${spring.redis.shiro.host}")
-    private String host;
-    @Value("${spring.redis.shiro.port}")
-    private int port;
-    @Value("${spring.redis.shiro.timeout}")
-    private int timeout;
-    @Value("${spring.redis.shiro.password}")
-    private String password;
+
 
 
     @Bean
@@ -49,10 +41,11 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/webjars/springfox-swagger-ui/**", "anon");
         //swagger  END
 
-        filterChainDefinitionMap.put("/user/register", "anon");
+
 
         filterChainDefinitionMap.put("/static/**", "anon");
         filterChainDefinitionMap.put("/ajaxLogin", "anon");
+        filterChainDefinitionMap.put("/user/register", "anon");
 
 
         //<!-- 过滤链定义，从上向下顺序执行，一般将/**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
@@ -63,7 +56,7 @@ public class ShiroConfig {
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
         shiroFilterFactoryBean.setLoginUrl("/noLogin");
         //设置无权限返回
-        shiroFilterFactoryBean.setUnauthorizedUrl("/unauth");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/403");
 
         // 登录成功后要跳转的链接
         //shiroFilterFactoryBean.setSuccessUrl("/index");

@@ -3,7 +3,6 @@ package com.cx.prototype.mode.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.cx.prototype.mode.entity.UserInfo;
 import com.cx.prototype.mode.service.UserInfoService;
-import com.cx.prototype.util.Utils;
 import com.cx.prototype.util.controller.BaseController;
 import com.cx.prototype.util.entity.ResultBean;
 import io.swagger.annotations.Api;
@@ -50,15 +49,11 @@ public class UserController extends BaseController {
     @ApiOperation(value = "register", notes = "注册用户")
     @RequestMapping(value = "register", method = RequestMethod.POST)
     public ResultBean register(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject param) {
-        UserInfo userInfo = Utils.parseObject(param, UserInfo.class);
-
-        UserInfo user = userInfoService.findByUsername(userInfo.getUsername());
+        UserInfo user = userInfoService.findByUsername(param.getString("username"));
         if (null != user) {
             return this.fail(402, "该用户已存在！");
         }
-
-        return this.userInfoService.save(this.success(request, response), userInfo);
-
+        return this.userInfoService.save(this.success(request, response), param);
     }
 
 }

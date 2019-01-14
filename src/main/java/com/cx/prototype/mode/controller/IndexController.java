@@ -9,20 +9,18 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@Controller
+@RestController
 public class IndexController extends BaseController {
 
 
     @RequestMapping(value = "/ajaxLogin", method = RequestMethod.POST)
-    @ResponseBody
     public ResultBean ajaxLogin(HttpServletRequest request, HttpServletResponse response, UserInfo userInfo) {
         JSONObject jsonObject = new JSONObject();
 
@@ -47,11 +45,8 @@ public class IndexController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "/noLogin", method = RequestMethod.GET)
-    @ResponseBody
+    @RequestMapping(value = "/noLogin",method = RequestMethod.GET)
     public ResultBean noLogin() {
-//        return ResultBean.FAIL(Constant.NO_LOGIN_CODE, Constant.NO_LOGIN_CN);
-
         return this.fail();
     }
 
@@ -60,8 +55,7 @@ public class IndexController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "/unauth", method = RequestMethod.GET)
-    @ResponseBody
+    @RequestMapping(value = "/403", method = RequestMethod.GET)
     public ResultBean unauth() {
         return this.fail();
     }
@@ -78,10 +72,7 @@ public class IndexController extends BaseController {
         return this.success(request, response);
     }
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public ResultBean test(HttpServletRequest request, HttpServletResponse response) {
-        return this.getDataSuccess(request, response, "11111111111111111111111");
-    }
+
 
 
 }

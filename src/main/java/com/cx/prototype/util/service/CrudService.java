@@ -12,6 +12,8 @@ import com.cx.prototype.util.entity.Info;
 import com.cx.prototype.util.entity.ResultBean;
 import com.cx.prototype.util.shiro.ShiroUtil;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +30,20 @@ public abstract class CrudService<M extends BaseMapper<T>, T extends BaseEntity>
      * 泛型实体
      */
     protected Class<T> entityClass = null;
+
+    /**
+     * 构造函数 (初始化的时候获取一些泛型信息)
+     */
+    @SuppressWarnings("unchecked")
+    public CrudService() {
+        // 得到该泛型类的子类对象的Class对象
+        Class clz = this.getClass();
+        // 得到子类对象的泛型父类类型 (CrudController)
+        ParameterizedType type = (ParameterizedType) clz.getGenericSuperclass();
+        Type[] types = type.getActualTypeArguments();
+        // 获取Entity的实际class
+        entityClass = (Class<T>) types[1];
+    }
 
     /**
      * 根据ID 查询实体
@@ -89,6 +105,19 @@ public abstract class CrudService<M extends BaseMapper<T>, T extends BaseEntity>
         }
     }
 
+
+    public int saveNoSession(T t) {
+        if (t.getId() == null || t.getId().equals(0L)) {
+            //新增
+            t.setCreateDate(new Date());
+            return this.baseMapper.insert(t);
+        } else {
+            //修改
+            t.setUpdateDate(new Date());
+            return this.baseMapper.updateById(t);
+        }
+    }
+
     /**
      * 待结果生成的保存数据
      *
@@ -120,7 +149,6 @@ public abstract class CrudService<M extends BaseMapper<T>, T extends BaseEntity>
     }
 
     /**
-     *
      * @param result
      * @param t
      * @return
