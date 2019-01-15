@@ -8,6 +8,8 @@ import com.cx.prototype.util.entity.BaseEntity;
 public class SysPermission extends BaseEntity {
 
 
+    private static final long serialVersionUID = 7248403518004298240L;
+
     private String name;//名称.
     private String resourceType;//资源类型，[menu|button]
     private String url;//资源路径.

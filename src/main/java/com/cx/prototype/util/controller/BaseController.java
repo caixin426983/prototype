@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
  * @Author cx
  * @Date 2019/1/8 10:36
  **/
-public class BaseController {
+public abstract class BaseController {
 
     /**
      * 生成一个Result，默认采用成功标识

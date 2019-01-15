@@ -25,18 +25,17 @@ public class ShiroConfig {
 
     @Bean
     public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
-        System.out.println("ShiroConfiguration.shirFilter()");
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         //拦截器.
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         //配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了
-        filterChainDefinitionMap.put("/logout", "logout");
+//        filterChainDefinitionMap.put("/logout", "logout");
         // 配置不会被拦截的链接 顺序判断
         filterChainDefinitionMap.put("/druid/**", "anon");
         //swagger  START
         filterChainDefinitionMap.put("/swagger-ui.html", "anon");
-        filterChainDefinitionMap.put("/swagger-resources", "anon");
+        filterChainDefinitionMap.put("/swagger-resources/**", "anon");
         filterChainDefinitionMap.put("/v2/api-docs", "anon");
         filterChainDefinitionMap.put("/webjars/springfox-swagger-ui/**", "anon");
         //swagger  END
@@ -58,11 +57,6 @@ public class ShiroConfig {
         //设置无权限返回
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
 
-        // 登录成功后要跳转的链接
-        //shiroFilterFactoryBean.setSuccessUrl("/index");
-
-        //未授权界面;
-//        shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }

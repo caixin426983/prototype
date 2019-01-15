@@ -6,6 +6,8 @@ import com.cx.prototype.util.entity.BaseEntity;
 public class UserInfo  extends BaseEntity{
 
 
+    private static final long serialVersionUID = -2272517219283218243L;
+
 
     private String username;//帐号
     private String name;//名称（昵称或者真实姓名，不同系统不同定义）

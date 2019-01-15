@@ -1,15 +1,13 @@
 package com.cx.prototype.util.entity;
 
 
-import com.alibaba.fastjson.JSONObject;
-
 public class ResultBean {
 
     private int code;
 
     private String message;
 
-    private Object data = new Object();
+    private Object data ;
 
     public ResultBean() {
     }
@@ -98,7 +96,7 @@ public class ResultBean {
         return data;
     }
 
-    public void setData(JSONObject data) {
+    public void setData(Object data) {
         this.data = data;
     }
 
