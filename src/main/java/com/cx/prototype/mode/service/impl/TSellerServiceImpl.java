@@ -7,6 +7,8 @@ import com.cx.prototype.mode.service.TSellerService;
 import com.cx.prototype.util.entity.PageParam;
 import com.cx.prototype.util.entity.ResultBean;
 import com.cx.prototype.util.service.CrudService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,8 +23,12 @@ public class TSellerServiceImpl extends CrudService<TSellerMapper, TSeller> impl
 
 
     @Override
-    public List<TSeller> list(PageParam param) {
-        return null;
+    public ResultBean list(ResultBean result, PageParam param) {
+        PageHelper.startPage(param.getPageNum(), param.getPageSize());
+        List<TSeller> sellerList = super.findList();
+        PageInfo<TSeller> pageInfo = new PageInfo<>(sellerList);
+        List<TSeller> list = pageInfo.getList();
+        return result.SUCCESS().addData(list);
     }
 
     @Override
@@ -32,12 +38,12 @@ public class TSellerServiceImpl extends CrudService<TSellerMapper, TSeller> impl
 
     @Override
     public ResultBean insert(ResultBean result, JSONObject param) {
-        return super.save(result,param);
+        return super.save(result, param);
     }
 
     @Override
-    public ResultBean update(ResultBean result,JSONObject param) {
-        return super.save(result,param);
+    public ResultBean update(ResultBean result, JSONObject param) {
+        return super.save(result, param);
     }
 
     @Override

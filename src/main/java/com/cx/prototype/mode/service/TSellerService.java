@@ -5,11 +5,9 @@ import com.cx.prototype.mode.entity.TSeller;
 import com.cx.prototype.util.entity.PageParam;
 import com.cx.prototype.util.entity.ResultBean;
 
-import java.util.List;
-
 public interface TSellerService {
 
-    List<TSeller> list(PageParam param);
+    ResultBean list(ResultBean result, PageParam param);
 
     TSeller detail(Long id);
 

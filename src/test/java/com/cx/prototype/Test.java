@@ -23,6 +23,7 @@ public class Test {
 
         System.out.println(UUID.randomUUID().toString().replace("-", ""));
 
+
     }
 
 }

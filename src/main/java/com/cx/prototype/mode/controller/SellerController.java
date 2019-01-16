@@ -31,7 +31,7 @@ public class SellerController extends BaseController {
     @ApiOperation(value = "list", notes = "分页")
     @RequestMapping(value = "list", method = RequestMethod.POST)
     public ResultBean list(HttpServletRequest request, HttpServletResponse response, @RequestBody PageParam param) {
-        return this.getDataSuccess(request, response, sellerService.list(param));
+        return sellerService.list(success(request, response), param);
     }
 
     @ApiOperation(value = "detail", notes = "查看详情")
