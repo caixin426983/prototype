@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  **/
 @RestController
 @RequestMapping(value = "user")
-@Api(value = "user")
+@Api(value = "user", description = "用户控制器")
 public class UserController extends BaseController {
 
     @Autowired

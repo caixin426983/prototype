@@ -27,8 +27,7 @@ public class TSellerServiceImpl extends CrudService<TSellerMapper, TSeller> impl
         PageHelper.startPage(param.getPageNum(), param.getPageSize());
         List<TSeller> sellerList = super.findList();
         PageInfo<TSeller> pageInfo = new PageInfo<>(sellerList);
-        List<TSeller> list = pageInfo.getList();
-        return result.SUCCESS().addData(list);
+        return result.SUCCESS().addData(pageInfo);
     }
 
     @Override
