@@ -21,8 +21,6 @@ import java.util.Properties;
 public class ShiroConfig {
 
 
-
-
     @Bean
     public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
