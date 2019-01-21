@@ -1,0 +1,82 @@
+package ${package.Controller};
+
+
+    #if(${restControllerStyle})
+    import org.springframework.web.bind.annotation.RequestMethod;
+    import org.springframework.web.bind.annotation.RestController;
+    #else
+    import org.springframework.stereotype.Controller;
+    #end
+    #if(${superControllerClassPackage})
+    import ${superControllerClassPackage};
+    #end
+import com.alibaba.fastjson.JSONObject;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMethod;
+import com.cx.prototype.util.entity.PageParam;
+import com.cx.prototype.util.entity.ResultBean;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import ${package.Service}.${table.serviceName};
+import ${package.Entity}.${entity};
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+/**
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Api(description = "")
+@RestController
+@RequestMapping("#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
+#if(${superControllerClass})
+public class ${table.controllerName} extends ${superControllerClass} {
+#else
+public class ${table.controllerName} {
+#end
+private final Logger logger=LoggerFactory.getLogger(${table.controllerName}.class);
+
+@Autowired
+public ${table.serviceName} i${entity}Service;
+
+
+        @ApiOperation(value = "list", notes = "分页")
+        @RequestMapping(value = {"/list"}, method = RequestMethod.POST)
+        public ResultBean list(HttpServletRequest request, HttpServletResponse response, PageParam param){
+            return i${entity}Service.list(success(request,response),param);
+        }
+
+
+        @ApiOperation(value = "detail", notes = "查看详情")
+        @RequestMapping(value ="/detail",, method = RequestMethod.POST)
+        public ResultBean detail(HttpServletRequest request, HttpServletResponse response, @ApiParam(value = "id", required = true) @RequestParam Long id){
+            return this.getDataSuccess(request, response, i${entity}Service.detail(id));
+        }
+
+        @ApiOperation(value = "insert", notes = "新增")
+        @RequestMapping(value = "insert", method = RequestMethod.POST)
+        public ResultBean insert(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject param) {
+            return i${entity}Service.insert(super.success(request, response), param);
+        }
+
+        @ApiOperation(value = "update", notes = "修改")
+        @RequestMapping(value = "update", method = RequestMethod.POST)
+        public ResultBean update(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject param) {
+         return i${entity}Service.update(super.success(request, response), param);
+        }
+
+        @ApiOperation(value = "delete", notes = "删除")
+        @RequestMapping(value = "delete", method = RequestMethod.POST)
+        public ResultBean delete(HttpServletRequest request, HttpServletResponse response, @ApiParam(value = "id", required = true) @RequestParam Long id) {
+            return this.getDataSuccess(request, response, i${entity}Service.delete(id));
+        }
+
+
+}

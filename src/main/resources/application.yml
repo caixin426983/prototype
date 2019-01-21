@@ -40,6 +40,8 @@ spring:
       port: 6379
       timeout: 0
       password: 123456
+  mvc:
+    static-path-pattern: /static/**
 
 
 #MyBatis-Plus 配置

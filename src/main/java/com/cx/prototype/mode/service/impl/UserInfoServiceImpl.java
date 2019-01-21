@@ -9,9 +9,11 @@ import com.cx.prototype.util.entity.ResultBean;
 import com.cx.prototype.util.service.CrudService;
 import com.cx.prototype.util.shiro.ShiroUtil;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
+@Transactional
 public class UserInfoServiceImpl extends CrudService<UserInfoMapper, UserInfo> implements UserInfoService {
 
 

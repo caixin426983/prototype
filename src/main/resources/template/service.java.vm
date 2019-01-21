@@ -1,0 +1,28 @@
+package ${package.Service};
+
+
+import com.alibaba.fastjson.JSONObject;
+import ${package.Entity}.${entity};
+import com.cx.prototype.util.entity.PageParam;
+import com.cx.prototype.util.entity.ResultBean;
+
+
+
+/**
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+public interface ${table.controllerName}{
+
+        ResultBean list(ResultBean result, PageParam param);
+
+        ${entity} detail(Long id);
+
+        ResultBean insert(ResultBean result, JSONObject param);
+
+        ResultBean update(ResultBean result, JSONObject param);
+
+        int delete(Long id);
+
+}
