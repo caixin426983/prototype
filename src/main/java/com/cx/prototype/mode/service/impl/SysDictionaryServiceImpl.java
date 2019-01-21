@@ -1,9 +1,9 @@
 package com.cx.prototype.mode.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.cx.prototype.mode.entity.TSeller;
-import com.cx.prototype.mode.mapper.TSellerMapper;
-import com.cx.prototype.mode.service.TSellerService;
+import com.cx.prototype.mode.entity.SysDictionary;
+import com.cx.prototype.mode.mapper.SysDictionaryMapper;
+import com.cx.prototype.mode.service.SysDictionaryService;
 import com.cx.prototype.util.entity.PageParam;
 import com.cx.prototype.util.entity.ResultBean;
 import com.cx.prototype.util.service.CrudService;
@@ -14,24 +14,23 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @Description TODO
+ * @Description
  * @Author cx
- * @Date 2019/1/16 15:54
+ * @Date 2019/1/17 15:52
  **/
 @Service
-public class TSellerServiceImpl extends CrudService<TSellerMapper, TSeller> implements TSellerService {
-
+public class SysDictionaryServiceImpl extends CrudService<SysDictionaryMapper, SysDictionary> implements SysDictionaryService {
 
     @Override
     public ResultBean list(ResultBean result, PageParam param) {
         PageHelper.startPage(param.getPageNum(), param.getPageSize());
-        List<TSeller> sellerList = super.findList();
-        PageInfo<TSeller> pageInfo = new PageInfo<>(sellerList);
+        List<SysDictionary> sellerList = super.findList();
+        PageInfo<SysDictionary> pageInfo = new PageInfo<>(sellerList);
         return result.SUCCESS().addData(pageInfo);
     }
 
     @Override
-    public TSeller detail(Long id) {
+    public SysDictionary detail(Long id) {
         return super.getById(id);
     }
 
@@ -47,6 +46,6 @@ public class TSellerServiceImpl extends CrudService<TSellerMapper, TSeller> impl
 
     @Override
     public int delete(Long id) {
-        return this.deleteById(id);
+        return super.deleteById(id);
     }
 }

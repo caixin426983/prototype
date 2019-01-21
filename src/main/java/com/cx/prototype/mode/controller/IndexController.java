@@ -1,12 +1,12 @@
 package com.cx.prototype.mode.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.cx.prototype.mode.entity.UserInfo;
 import com.cx.prototype.util.controller.BaseController;
 import com.cx.prototype.util.entity.Constant;
 import com.cx.prototype.util.entity.ResultBean;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -15,24 +15,27 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-@Api
+@Api(description = "")
 public class IndexController extends BaseController {
 
 
     @ApiOperation(value = "ajaxLogin", notes = "用户登录")
     @RequestMapping(value = "/ajaxLogin", method = RequestMethod.POST)
     @ResponseBody
-    public ResultBean ajaxLogin(HttpServletRequest request, HttpServletResponse response, UserInfo userInfo) {
+    public ResultBean ajaxLogin(HttpServletRequest request, HttpServletResponse response,
+                                @ApiParam(value = "username", required = true) @RequestParam String username,
+                                @ApiParam(value = "password", required = true) @RequestParam String password) {
         JSONObject jsonObject = new JSONObject();
 
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(userInfo.getUsername(), userInfo.getPassword());
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         try {
             subject.login(token);
             jsonObject.put("token", subject.getSession().getId());

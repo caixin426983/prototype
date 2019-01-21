@@ -3,7 +3,6 @@ package com.cx.prototype.util.entity;
 import com.alibaba.fastjson.JSONObject;
 
 import java.io.Serializable;
-import java.util.Map;
 
 /**
  * @Description 分页工具类
@@ -27,6 +26,9 @@ public class PageParam implements Serializable {
      * 条件参数
      */
     private Map<String,Object> whereMap;
+
+    public PageParam() {
+    }
 
     public PageParam(int pageNum, int pageSize, JSONObject whereMap) {
         this.pageNum = pageNum;

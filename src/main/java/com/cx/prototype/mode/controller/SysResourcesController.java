@@ -4,6 +4,7 @@ package com.cx.prototype.mode.controller;
 import com.cx.prototype.mode.service.SysResourcesService;
 import com.cx.prototype.util.controller.BaseController;
 import com.cx.prototype.util.entity.ResultBean;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping(value = "resources")
+@Api(description = "用户资源控制器")
 public class SysResourcesController extends BaseController {
 
     @Autowired
