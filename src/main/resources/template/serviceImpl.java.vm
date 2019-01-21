@@ -1,0 +1,78 @@
+package ${package.ServiceImpl};
+
+import com.alibaba.fastjson.JSONObject;
+import ${package.Entity}.${entity};
+import ${package.Mapper}.${table.mapperName};
+import ${package.Service}.${table.serviceName};
+import ${superServiceImplClassPackage};
+import org.springframework.stereotype.Service;
+import com.cx.prototype.util.entity.PageParam;
+import com.cx.prototype.util.entity.ResultBean;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+/**
+ * <p>
+ * $!{table.comment} 服务实现类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service
+@Transactional
+public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
+
+
+        @Autowired
+        private ${table.mapperName} ${table.entityPath}Mapper
+
+
+        @Override
+        public ResultBean list(ResultBean result, PageParam param) {
+            PageHelper.startPage(param.getPageNum(), param.getPageSize());
+            List<${entity}> list = super.findList();
+            PageInfo<${entity}> pageInfo = new PageInfo<>(list);
+            return result.SUCCESS().addData(pageInfo);
+        }
+
+        @Override
+        public ${entity} detail(Long id) {
+            return super.getById(id);
+        }
+
+        @Override
+        public ResultBean insert(ResultBean result, JSONObject param) {
+            return super.save(result, param);
+        }
+
+        @Override
+        public ResultBean update(ResultBean result, JSONObject param) {
+            return super.save(result, param);
+        }
+
+        @Override
+        public int delete(Long id) {
+            return this.deleteById(id);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

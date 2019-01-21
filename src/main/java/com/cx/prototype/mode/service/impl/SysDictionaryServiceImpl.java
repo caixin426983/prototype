@@ -10,6 +10,7 @@ import com.cx.prototype.util.service.CrudService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ import java.util.List;
  * @Date 2019/1/17 15:52
  **/
 @Service
+@Transactional
 public class SysDictionaryServiceImpl extends CrudService<SysDictionaryMapper, SysDictionary> implements SysDictionaryService {
 
     @Override

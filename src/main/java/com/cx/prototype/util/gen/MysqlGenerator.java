@@ -3,7 +3,9 @@ package com.cx.prototype.util.gen;
 import com.baomidou.mybatisplus.enums.FieldFill;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
 import com.baomidou.mybatisplus.generator.config.po.TableFill;
+import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.DbType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 
@@ -11,17 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Description TODO
+ * @Description
  * @Author cx
  * @Date 2019/1/17 16:46
  **/
 public class MysqlGenerator extends MybatisPlusGenerator {
 
-    /**
-     * <p>
-     * MySQL 生成演示
-     * </p>
-     */
+
     public static void main(String[] args) {
         int result = scanner();
         // 自定义需要填充的字段
@@ -35,33 +33,33 @@ public class MysqlGenerator extends MybatisPlusGenerator {
                         .setOutputDir("D:\\")//输出目录
                         .setFileOverride(true)// 是否覆盖文件
                         .setActiveRecord(true)// 开启 activeRecord 模式
-                        .setEnableCache(false)// XML 二级缓存
+                        .setEnableCache(true)// XML 二级缓存
                         .setBaseResultMap(true)// XML ResultMap
                         .setBaseColumnList(true)// XML columList
                         //.setKotlin(true) 是否生成 kotlin 代码
-                        .setAuthor("CaiXin")
-                // 自定义文件命名，注意 %s 会自动填充表实体属性！
-                // .setEntityName("%sEntity");
-                // .setMapperName("%sDao")
-                // .setXmlName("%sDao")
-                // .setServiceName("MP%sService")
-                // .setServiceImplName("%sServiceDiy")
+                        .setAuthor("cx")
+                        // 自定义文件命名，注意 %s 会自动填充表实体属性！
+                        // .setEntityName("%sEntity");
+                        // .setMapperName("%sDao")
+                        // .setXmlName("%sDao")
+                        .setServiceName("%sService")
+                        .setServiceImplName("%sServiceImpl")
                 // .setControllerName("%sAction")
         ).setDataSource(
                 // 数据源配置
                 new DataSourceConfig()
                         .setDbType(DbType.MYSQL)// 数据库类型
-                        //.setTypeConvert(new MySqlTypeConvert() {
-                        //    // 自定义数据库表字段类型转换【可选】
-                        //    @Override
-                        //    public DbColumnType processTypeConvert(GlobalConfig globalConfig, String fieldType) {
-                        //        System.out.println("转换类型：" + fieldType);
-                        //        // if ( fieldType.toLowerCase().contains( "tinyint" ) ) {
-                        //        //    return DbColumnType.BOOLEAN;
-                        //        // }
-                        //        return super.processTypeConvert(globalConfig, fieldType);
-                        //    }
-                        //})
+                        .setTypeConvert(new MySqlTypeConvert() {
+                            // 自定义数据库表字段类型转换【可选】
+                            @Override
+                            public DbColumnType processTypeConvert(String fieldType) {
+                                System.out.println("转换类型：" + fieldType);
+//                                if (fieldType.toLowerCase().contains("tinyint")) {
+//                                    return DbColumnType.BOOLEAN;
+//                                }
+                                return super.processTypeConvert(fieldType);
+                            }
+                        })
                         .setDriverName("com.mysql.cj.jdbc.Driver")
                         .setUsername("root")
                         .setPassword("root")
@@ -130,14 +128,14 @@ public class MysqlGenerator extends MybatisPlusGenerator {
         setTemplate(
         // 关闭默认 xml 生成，调整生成 至 根目录
         new TemplateConfig().setXml(null)
-        // 自定义模板配置，模板可以参考源码 /mybatis-plus/src/main/resources/template 使用 copy
-        // 至您项目 src/main/resources/template 目录下，模板名称也可自定义如下配置：
-        // .setController("...");
-        // .setEntity("...");
-        // .setMapper("...");
-        // .setXml("...");
-        // .setService("...");
-        // .setServiceImpl("...");
+                // 自定义模板配置，模板可以参考源码 /mybatis-plus/src/main/resources/template 使用 copy
+                // 至您项目 src/main/resources/template 目录下，模板名称也可自定义如下配置：
+                .setController("/template/controller.java.vm")
+                .setEntity("/template/entity.java.vm")
+                .setMapper("/template/mapper.java.vm")
+                .setXml("/template/mapper.xml.vm")
+                .setService("/template/service.java.vm")
+                .setServiceImpl("/template/serviceImpl.java.vm")
 );
         // 执行生成
         if (1 == result) {

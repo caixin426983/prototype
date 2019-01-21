@@ -10,15 +10,17 @@ import com.cx.prototype.util.service.CrudService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
- * @Description TODO
+ * @Description
  * @Author cx
  * @Date 2019/1/16 15:54
  **/
 @Service
+@Transactional
 public class TSellerServiceImpl extends CrudService<TSellerMapper, TSeller> implements TSellerService {
 
 
