@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.generator.config.po.TableFill;
 import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.DbType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import com.cx.prototype.util.entity.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +21,8 @@ import java.util.List;
 public class MysqlGenerator extends MybatisPlusGenerator {
 
 
-    public static void main(String[] args) {
-        int result = scanner();
+    public static void gen(String tableName) {
+//        int result = scanner();
         // 自定义需要填充的字段
         List<TableFill> tableFillList = new ArrayList<>();
         tableFillList.add(new TableFill("ASDD_SS", FieldFill.INSERT_UPDATE));
@@ -30,7 +31,7 @@ public class MysqlGenerator extends MybatisPlusGenerator {
         AutoGenerator mpg = new AutoGenerator().setGlobalConfig(
                 // 全局配置
                 new GlobalConfig()
-                        .setOutputDir("D:\\")//输出目录
+                        .setOutputDir(Constant.FILE_DOWNLOAD_PATH)//输出目录
                         .setFileOverride(true)// 是否覆盖文件
                         .setActiveRecord(true)// 开启 activeRecord 模式
                         .setEnableCache(true)// XML 二级缓存
@@ -53,7 +54,7 @@ public class MysqlGenerator extends MybatisPlusGenerator {
                             // 自定义数据库表字段类型转换【可选】
                             @Override
                             public DbColumnType processTypeConvert(String fieldType) {
-                                System.out.println("转换类型：" + fieldType);
+//                                System.out.println("转换类型：" + fieldType);
 //                                if (fieldType.toLowerCase().contains("tinyint")) {
 //                                    return DbColumnType.BOOLEAN;
 //                                }
@@ -69,9 +70,9 @@ public class MysqlGenerator extends MybatisPlusGenerator {
                 new StrategyConfig()
                         // .setCapitalMode(true)// 全局大写命名
                         // .setDbColumnUnderline(true)//全局下划线命名
-                        .setTablePrefix(new String[]{"tbl_", "mp_"})// 此处可以修改为您的表前缀
+//                        .setTablePrefix(new String[]{"tbl_", "mp_"})// 此处可以修改为您的表前缀
                         .setNaming(NamingStrategy.underline_to_camel)// 表名生成策略
-                        .setInclude(new String[]{"t_seller"}) // 需要生成的表
+                        .setInclude(tableName) // 需要生成的表
                         // .setExclude(new String[]{"test"}) // 排除生成的表
                         .setTableFillList(tableFillList)
                         // 自定义实体父类
@@ -138,9 +139,9 @@ public class MysqlGenerator extends MybatisPlusGenerator {
                 .setServiceImpl("/template/serviceImpl.java.vm")
 );
         // 执行生成
-        if (1 == result) {
-//            mpg.setTemplateEngine(new FreemarkerTemplateEngine());
-        }
+//        if (1 == result) {
+////            mpg.setTemplateEngine(new FreemarkerTemplateEngine());
+//        }
         mpg.execute();
 
     }
