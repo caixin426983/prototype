@@ -21,7 +21,7 @@ import java.util.List;
 public class MysqlGenerator extends MybatisPlusGenerator {
 
 
-    public static void gen(String tableName) {
+    public static void gen(String[] tableName) {
 //        int result = scanner();
         // 自定义需要填充的字段
         List<TableFill> tableFillList = new ArrayList<>();

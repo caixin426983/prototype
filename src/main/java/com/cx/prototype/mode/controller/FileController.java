@@ -24,4 +24,10 @@ public class FileController extends BaseController {
     }
 
 
+    @RequestMapping(value = "uploadFile", method = RequestMethod.POST)
+    public void uploadFile(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
+
 }
