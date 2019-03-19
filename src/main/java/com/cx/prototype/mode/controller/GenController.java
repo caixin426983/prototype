@@ -9,12 +9,17 @@ import com.cx.prototype.util.file.ZipUtil;
 import com.cx.prototype.util.gen.MysqlGenerator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.zip.ZipOutputStream;
 
 /**
  * @Description
@@ -42,16 +47,38 @@ public class GenController extends BaseController {
     }
 
     @ApiOperation(value = "generatorTable", notes = "生成所选表的数据")
-    @RequestMapping(value = "generatorTable/{tableNames}", method = RequestMethod.GET)
+    @RequestMapping(value = "generatorTable", method = RequestMethod.POST)
     public void generatorTable(HttpServletRequest request, HttpServletResponse response,
-                               @PathVariable String tableNames) {
+                               @ApiParam(value = "表名称", required = true) @RequestParam String[] tableNames) {
         MysqlGenerator.gen(tableNames);
-        ZipUtil.createZip(Constant.FILE_DOWNLOAD_PATH, Constant.FILE_DOWNLOAD_PATH, false);
+
+        String sourceFilePath = Constant.FILE_DOWNLOAD_PATH;
+        File sourceDir = new File(sourceFilePath);
+        File zipFile = new File(sourceFilePath + ".zip");
+        ZipOutputStream zos = null;
         try {
-            FileUtils.downloadFile(response, Constant.FILE_DOWNLOAD_PATH);
+            zos = new ZipOutputStream(new FileOutputStream(zipFile));
+            String baseDir = Constant.FILE_DOWNLOAD_PATH;
+            ZipUtil.compress(sourceDir, baseDir, zos);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (zos != null)
+                try {
+                    zos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+        }
+
+        try {
+            FileUtils.downloadFile(response, Constant.FILE_DOWNLOAD_PATH + ".zip", "code.zip");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        zipFile.delete();//删除打包后的zip文件
+        ZipUtil.deleteDir(sourceDir); //删除生成的文件
+
     }
 
 }

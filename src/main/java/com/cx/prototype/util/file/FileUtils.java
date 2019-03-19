@@ -11,11 +11,7 @@ import java.io.*;
 public class FileUtils {
 
 
-    public static void downloadFile(HttpServletResponse response, String filePath) throws FileNotFoundException {
-
-
-
-        String fileName = "a.zip";
+    public static void downloadFile(HttpServletResponse response, String filePath,String fileName) throws FileNotFoundException {
         if (fileName != null) {
             //设置文件路径
             //如果上传目录为/static/images/upload/，则可以如下获取：

@@ -28,11 +28,9 @@ public class Constant {
 
     public static final String DEFAULT_PASSWORD = "123456";
 
-    public static final String FILE_UPLOAD_PATH = "\\static\\upload"; //文件上传路径
+    public static final String FILE_UPLOAD_PATH = "E:\\MyProject\\Prototype\\upload"; //文件上传路径
 
-    public static final String FILE_DOWNLOAD_PATH = "D:\\tempDownload";//文件下载临时存放路径
-
-
+    public static final String FILE_DOWNLOAD_PATH = "E:\\MyProject\\Prototype\\tempDownload";//文件下载临时存放路径
 
 
     /**
