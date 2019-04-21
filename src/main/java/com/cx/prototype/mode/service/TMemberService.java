@@ -1,8 +1,8 @@
-package ${package.Service};
+package com.cx.prototype.mode.service;
 
 
 import com.alibaba.fastjson.JSONObject;
-import ${package.Entity}.${entity};
+import com.cx.prototype.mode.entity.TMember;
 import com.cx.prototype.util.entity.PageParam;
 import com.cx.prototype.util.entity.ResultBean;
 
@@ -10,14 +10,14 @@ import com.cx.prototype.util.entity.ResultBean;
 
 /**
  *
- * @author ${author}
- * @since ${date}
+ * @author cx123
+ * @since 2019-04-21
  */
-public interface ${table.serviceName}{
+public interface TMemberService {
 
         ResultBean list(ResultBean result, PageParam param);
 
-        ${entity} detail(Long id);
+        TMember detail(Long id);
 
         ResultBean insert(ResultBean result, JSONObject param);
 

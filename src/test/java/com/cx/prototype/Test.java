@@ -24,6 +24,25 @@ public class Test {
         System.out.println(UUID.randomUUID().toString().replace("-", ""));
 
 
+        String ss1 = new String("china");
+        String s1 = "china";
+        String s2 = "china";
+        String s3 = "china";
+        String ss2 = new String("china");
+        String ss3 = new String("china");
+
+        System.out.println(s1 == s2);
+        System.out.println(s1 == s3);
+
+        System.out.println(s1 == ss1);
+        System.out.println(ss1 == ss2);
+
+        int a1 = 128;
+        final int INT1 = 128;
+        System.out.println(System.identityHashCode(a1));
+        System.out.println(System.identityHashCode(INT1));
+
+
     }
 
 }
