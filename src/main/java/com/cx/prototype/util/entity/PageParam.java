@@ -3,6 +3,7 @@ package com.cx.prototype.util.entity;
 import com.alibaba.fastjson.JSONObject;
 
 import java.io.Serializable;
+import java.util.Map;
 
 /**
  * @Description 分页工具类

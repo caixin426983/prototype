@@ -76,8 +76,8 @@ public class GenController extends BaseController {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        zipFile.delete();//删除打包后的zip文件
-        ZipUtil.deleteDir(sourceDir); //删除生成的文件
+//        zipFile.delete();//删除打包后的zip文件
+//        ZipUtil.deleteDir(sourceDir); //删除生成的文件
 
     }
 

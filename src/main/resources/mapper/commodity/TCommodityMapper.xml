@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cx.prototype.mode.mapper.TCommodityMapper">
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.cx.prototype.mode.entity.TCommodity">
+                <result column="id" property="id" />
+                <result column="create_by" property="createBy" />
+                <result column="create_date" property="createDate" />
+                <result column="update_by" property="updateBy" />
+                <result column="update_date" property="updateDate" />
+                    <result column="name" property="name" />
+                    <result column="img1" property="img1" />
+                    <result column="img2" property="img2" />
+                    <result column="img3" property="img3" />
+                    <result column="type" property="type" />
+                    <result column="title" property="title" />
+                    <result column="describe" property="describe" />
+                    <result column="integral" property="integral" />
+        </resultMap>
+
+
+
+        <select id="queryByIntegral" resultType="com.cx.prototype.mode.entity.TCommodity">
+            SELECT * FROM `t_commodity`  t
+            WHERE 1=1
+            AND t.state = 1
+            AND t.stock > 0
+            AND t.integral >= #{integral}
+        </select>
+
+
+</mapper>

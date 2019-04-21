@@ -2,10 +2,12 @@ package com.cx.prototype.mode.controller;
 
 import com.cx.prototype.util.controller.BaseController;
 import com.cx.prototype.util.entity.Constant;
+import com.cx.prototype.util.entity.ResultBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,12 +30,13 @@ public class FileController extends BaseController {
     @RequestMapping(value = "download", method = RequestMethod.GET)
     public void downloadFile(HttpServletRequest request, HttpServletResponse response) {
 
-
     }
 
 
     @RequestMapping(value = "upload", method = RequestMethod.POST)
-    public void uploadFile(@RequestParam("file") MultipartFile file) {
+    @ResponseBody
+    public ResultBean uploadFile(HttpServletRequest request, HttpServletResponse response,
+                                 @RequestParam("file") MultipartFile file) {
 
         //文件名
         String filename = file.getOriginalFilename();
@@ -47,7 +50,7 @@ public class FileController extends BaseController {
 
         File newFilePath = new File(filePath + "\\" + suffixName);
         if (!newFilePath.exists() && !newFilePath.isDirectory()) {
-            newFilePath.mkdir();
+            newFilePath.mkdirs();
         }
 
         //创建文件
@@ -56,9 +59,11 @@ public class FileController extends BaseController {
         String absolutePath = dest.getAbsolutePath();
         try {
             file.transferTo(dest);
+            return this.getDataSuccess(request, response, absolutePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return this.fail();
     }
 
 
