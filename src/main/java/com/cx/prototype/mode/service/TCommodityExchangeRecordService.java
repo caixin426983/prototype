@@ -1,8 +1,8 @@
-package ${package.Service};
+package com.cx.prototype.mode.service;
 
 
 import com.alibaba.fastjson.JSONObject;
-import ${package.Entity}.${entity};
+import com.cx.prototype.mode.entity.TCommodityExchangeRecord;
 import com.cx.prototype.util.entity.PageParam;
 import com.cx.prototype.util.entity.ResultBean;
 
@@ -10,14 +10,14 @@ import com.cx.prototype.util.entity.ResultBean;
 
 /**
  *
- * @author ${author}
- * @since ${date}
+ * @author cx123
+ * @since 2019-04-19
  */
-public interface ${table.serviceName}{
+public interface TCommodityExchangeRecordService{
 
         ResultBean list(ResultBean result, PageParam param);
 
-        ${entity} detail(Long id);
+        TCommodityExchangeRecord detail(Long id);
 
         ResultBean insert(ResultBean result, JSONObject param);
 

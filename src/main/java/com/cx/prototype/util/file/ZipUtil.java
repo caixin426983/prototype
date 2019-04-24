@@ -120,8 +120,8 @@ public class ZipUtil {
                         zos.write(bufs, 0, read);
                     }
                     //如果需要删除源文件，则需要执行下面2句
-                    fis.close();
-                    fs[i].delete();
+//                    fis.close();
+//                    fs[i].delete();
                 } else if (fs[i].isDirectory()) {
                     compress(fs[i], baseDir + fName + "/", zos);
                 }
@@ -144,10 +144,6 @@ public class ZipUtil {
 
     }
 
-    public static void main(String[] args) throws ParseException {
-
-
-    }
 
 
 }

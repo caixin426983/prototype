@@ -5,12 +5,12 @@ server:
 spring:
   datasource:
 #    url: jdbc:mysql://47.98.232.129:3306/shiro?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
-    url: jdbc:mysql://127.0.0.1:3306/shiro?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/speedcar?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
     username: root
 #    公司密码
-    password: root
+#    password: root
 #    家里密码
-#    password: 123456
+    password: 123456
     driverClassName: com.mysql.jdbc.Driver
 
     #连接池的配置信息

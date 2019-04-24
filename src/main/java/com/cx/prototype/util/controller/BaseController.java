@@ -22,6 +22,7 @@ public abstract class BaseController {
      */
     public ResultBean success(HttpServletRequest request, HttpServletResponse response) {
         ResultBean resultBean = new ResultBean();
+        //
         return resultBean.SUCCESS();
     }
 
