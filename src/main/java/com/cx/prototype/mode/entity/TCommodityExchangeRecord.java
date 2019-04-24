@@ -1,11 +1,8 @@
 package com.cx.prototype.mode.entity;
 
 
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.cx.prototype.util.entity.BaseEntity;
-
 
 
 /**
@@ -13,66 +10,60 @@ import com.cx.prototype.util.entity.BaseEntity;
  * @since 2019-04-19
  */
 @TableName("t_commodity_exchange_record")
-public class TCommodityExchangeRecord extends BaseEntity{
-
+public class TCommodityExchangeRecord extends BaseEntity {
 
 
     private static final long serialVersionUID = 1L;
 
-                /**
-         * 会员表ID(t_member)
-         */
-        private Long memberId;
-        /**
-         * 商品ID
-         */
-        private Long commodityId;
-        /**
-         * 兑换数量
-         */
-        private Integer number;
-        /**
-         * 兑换商品时所需积分
-         */
-        private Integer integral;
-    
+    /**
+     * 会员表ID(t_member)
+     */
+    private Long memberId;
+    /**
+     * 商品ID
+     */
+    private Long commodityId;
+    /**
+     * 兑换数量
+     */
+    private Integer number;
+    /**
+     * 兑换商品时所需积分
+     */
+    private Integer integral;
 
 
+    public Long getMemberId() {
+        return memberId;
+    }
 
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
+    }
 
-             public Long getMemberId() {
-                return memberId;
-                }
+    public Long getCommodityId() {
+        return commodityId;
+    }
 
-            public void setMemberId(Long memberId) {
-                this.memberId = memberId;
-                }
+    public void setCommodityId(Long commodityId) {
+        this.commodityId = commodityId;
+    }
 
-             public Long getCommodityId() {
-                return commodityId;
-                }
+    public Integer getNumber() {
+        return number;
+    }
 
-            public void setCommodityId(Long commodityId) {
-                this.commodityId = commodityId;
-                }
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
 
-             public Integer getNumber() {
-                return number;
-                }
+    public Integer getIntegral() {
+        return integral;
+    }
 
-            public void setNumber(Integer number) {
-                this.number = number;
-                }
-
-             public Integer getIntegral() {
-                return integral;
-                }
-
-            public void setIntegral(Integer integral) {
-                this.integral = integral;
-                }
-
-
+    public void setIntegral(Integer integral) {
+        this.integral = integral;
+    }
 
 
 }

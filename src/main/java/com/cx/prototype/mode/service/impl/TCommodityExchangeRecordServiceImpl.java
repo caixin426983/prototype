@@ -14,10 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author cx123
@@ -28,51 +29,42 @@ import java.util.List;
 public class TCommodityExchangeRecordServiceImpl extends CrudService<TCommodityExchangeRecordMapper, TCommodityExchangeRecord> implements TCommodityExchangeRecordService {
 
 
-        @Autowired
-        private TCommodityExchangeRecordMapper tCommodityExchangeRecordMapper;
+    @Autowired
+    private TCommodityExchangeRecordMapper tCommodityExchangeRecordMapper;
 
 
-        @Override
-        public ResultBean list(ResultBean result, PageParam param) {
-            PageHelper.startPage(param.getPageNum(), param.getPageSize());
-            List<TCommodityExchangeRecord> list = super.findList();
-            PageInfo<TCommodityExchangeRecord> pageInfo = new PageInfo<>(list);
-            return result.SUCCESS().addData(pageInfo);
-        }
+    @Override
+    public ResultBean list(ResultBean result, PageParam param) {
+        PageHelper.startPage(param.getPageNum(), param.getPageSize());
+        List<TCommodityExchangeRecord> list = super.findList();
+        PageInfo<TCommodityExchangeRecord> pageInfo = new PageInfo<>(list);
+        return result.SUCCESS().addData(pageInfo);
+    }
 
-        @Override
-        public TCommodityExchangeRecord detail(Long id) {
-            return super.getById(id);
-        }
+    @Override
+    public TCommodityExchangeRecord detail(Long id) {
+        return super.getById(id);
+    }
 
-        @Override
-        public ResultBean insert(ResultBean result, JSONObject param) {
-            return super.save(result, param);
-        }
+    @Override
+    public ResultBean insert(ResultBean result, JSONObject param) {
+        return super.save(result, param);
+    }
 
-        @Override
-        public ResultBean update(ResultBean result, JSONObject param) {
-            return super.save(result, param);
-        }
+    @Override
+    public ResultBean update(ResultBean result, JSONObject param) {
+        return super.save(result, param);
+    }
 
-        @Override
-        public int delete(Long id) {
-            return this.deleteById(id);
-        }
+    @Override
+    public int delete(Long id) {
+        return this.deleteById(id);
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @Override
+    public List<Map<String, Object>> exchangeRecord(Long memberId) {
+        return tCommodityExchangeRecordMapper.exchangeRecord(memberId);
+    }
 
 
 }

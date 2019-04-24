@@ -1,6 +1,7 @@
 package com.cx.prototype.mode.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cx.prototype.mode.service.TCommodityExchangeRecordService;
 import com.cx.prototype.mode.service.TCommodityService;
 import com.cx.prototype.mode.service.TMemberService;
 import com.cx.prototype.util.controller.BaseController;
@@ -29,20 +30,23 @@ public class WeiXinController extends BaseController {
     @Autowired
     private TMemberService memberService;
 
-    @ApiOperation(value = "recharge", notes = "充值—还未实现")
+    @Autowired
+    private TCommodityExchangeRecordService commodityExchangeRecordService;
+
+    @ApiOperation(value = "充值—还未实现", notes = "充值—还未实现")
     @RequestMapping(value = "recharge", method = RequestMethod.POST)
     public ResultBean recharge(HttpServletRequest request, HttpServletResponse response, @ApiParam(value = "参数", required = true) JSONObject param) {
         return null;
     }
 
-    @ApiOperation(value = "pageQueryCommodity", notes = "分页查询所有商品列表")
+    @ApiOperation(value = "分页查询所有商品列表", notes = "分页查询所有商品列表")
     @RequestMapping(value = "pageQueryCommodity", method = RequestMethod.POST)
     public ResultBean pageQueryCommodity(HttpServletRequest request, HttpServletResponse response, @ApiParam(value = "分页参数", required = true) PageParam param) {
         return commodityService.list(success(request, response), param);
     }
 
 
-    @ApiOperation(value = "pageQueryCommodityByIntegral", notes = "根据积分查询能兑换的商品")
+    @ApiOperation(value = "根据积分查询能兑换的商品", notes = "根据积分查询能兑换的商品")
     @RequestMapping(value = "pageQueryCommodityByIntegral", method = RequestMethod.POST)
     public ResultBean pageQueryCommodityByIntegral(HttpServletRequest request, HttpServletResponse response,
                                                    @ApiParam(value = "会员当前积分", required = true) @RequestParam Integer integral) {
@@ -50,10 +54,17 @@ public class WeiXinController extends BaseController {
     }
 
 
-    @ApiOperation(value = "queryMemberInfo", notes = "查询会员信息")
+    @ApiOperation(value = "查询会员信息", notes = "查询会员信息")
     @RequestMapping(value = "queryMemberInfo", method = RequestMethod.POST)
     public ResultBean queryMemberInfo(HttpServletRequest request, HttpServletResponse response, @ApiParam(value = "会员ID", required = true) @RequestParam Long id) {
         return this.getDataSuccess(request, response, memberService.detail(id));
+    }
+
+    @ApiOperation(value = "查询兑换记录")
+    @RequestMapping(value = "exchangeRecord", method = RequestMethod.POST)
+    public ResultBean exchangeRecord(HttpServletRequest request, HttpServletResponse response, @ApiParam(value = "会员ID", required = true) @RequestParam Long id) {
+
+        return this.getDataSuccess(request, response, commodityExchangeRecordService.exchangeRecord(id));
     }
 
 

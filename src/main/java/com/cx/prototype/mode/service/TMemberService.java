@@ -7,7 +7,6 @@ import com.cx.prototype.util.entity.PageParam;
 import com.cx.prototype.util.entity.ResultBean;
 
 
-
 /**
  *
  * @author cx123
@@ -24,5 +23,6 @@ public interface TMemberService {
         ResultBean update(ResultBean result, JSONObject param);
 
         int delete(Long id);
+
 
 }

@@ -1,7 +1,6 @@
 package com.cx.prototype.mode.entity;
 
 
-import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.cx.prototype.util.entity.BaseEntity;
 

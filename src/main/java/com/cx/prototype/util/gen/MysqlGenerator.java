@@ -63,7 +63,7 @@ public class MysqlGenerator extends MybatisPlusGenerator {
                         })
                         .setDriverName("com.mysql.cj.jdbc.Driver")
                         .setUsername("root")
-                        .setPassword("123456")
+                        .setPassword("root")
                         .setUrl("jdbc:mysql://127.0.0.1:3306/speedcar?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false")
         ).setStrategy(
                 // 策略配置

@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author cx123
@@ -28,50 +28,37 @@ import java.util.List;
 public class TMemberServiceImpl extends CrudService<TMemberMapper, TMember> implements TMemberService {
 
 
-        @Autowired
-        private TMemberMapper tMemberMapper;
+    @Autowired
+    private TMemberMapper tMemberMapper;
 
 
-        @Override
-        public ResultBean list(ResultBean result, PageParam param) {
-            PageHelper.startPage(param.getPageNum(), param.getPageSize());
-            List<TMember> list = super.findList();
-            PageInfo<TMember> pageInfo = new PageInfo<>(list);
-            return result.SUCCESS().addData(pageInfo);
-        }
+    @Override
+    public ResultBean list(ResultBean result, PageParam param) {
+        PageHelper.startPage(param.getPageNum(), param.getPageSize());
+        List<TMember> list = super.findList();
+        PageInfo<TMember> pageInfo = new PageInfo<>(list);
+        return result.SUCCESS().addData(pageInfo);
+    }
 
-        @Override
-        public TMember detail(Long id) {
-            return super.getById(id);
-        }
+    @Override
+    public TMember detail(Long id) {
+        return super.getById(id);
+    }
 
-        @Override
-        public ResultBean insert(ResultBean result, JSONObject param) {
-            return super.save(result, param);
-        }
+    @Override
+    public ResultBean insert(ResultBean result, JSONObject param) {
+        return super.save(result, param);
+    }
 
-        @Override
-        public ResultBean update(ResultBean result, JSONObject param) {
-            return super.save(result, param);
-        }
+    @Override
+    public ResultBean update(ResultBean result, JSONObject param) {
+        return super.save(result, param);
+    }
 
-        @Override
-        public int delete(Long id) {
-            return this.deleteById(id);
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @Override
+    public int delete(Long id) {
+        return this.deleteById(id);
+    }
 
 
 

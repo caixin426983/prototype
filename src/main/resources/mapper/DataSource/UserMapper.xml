@@ -4,7 +4,7 @@
 
 
     <select id="listTable" resultType="Map">
-        select * from information_schema.TABLES where TABLE_SCHEMA=(select database())
+        select TABLE_NAME from information_schema.TABLES where TABLE_SCHEMA=(select database())
     </select>
 
 
