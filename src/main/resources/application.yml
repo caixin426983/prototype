@@ -8,9 +8,9 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/speedcar?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
     username: root
 #    公司密码
-#    password: root
+    password: root
 #    家里密码
-    password: 123456
+#    password: 123456
     driverClassName: com.mysql.jdbc.Driver
 
     #连接池的配置信息
@@ -66,3 +66,7 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     #使用jdbc的getGeneratedKeys获取数据库自增主键值
     use-generated-keys: true
+
+
+weixin:
+  AppID: wx730ca227145f4c64

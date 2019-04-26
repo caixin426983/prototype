@@ -28,9 +28,40 @@ public class Constant {
 
     public static final String DEFAULT_PASSWORD = "123456";
 
+    //======================================↓↓↓↓↓ 开发环境 ↓↓↓↓↓=========================================================
     public static final String FILE_UPLOAD_PATH = "E:\\MyProject\\Prototype\\upload"; //文件上传路径
-
     public static final String FILE_DOWNLOAD_PATH = "E:\\MyProject\\Prototype\\tempDownload";//文件下载临时存放路径
+
+    //微信参数
+    public static final String ip = "http://47.98.232.129:80/";
+    public static final String token = "speedcarbeauty";
+    public static final String AppId = "wx730ca227145f4c64";
+    public static final String AppSecret = "cf78969c401ed743066d2d0096423775";
+    public static final String EncodingAESKey = "rYI8cqDTNJtDpi2PCHTzGwCR6eMpd89cUY9c1wL9CPp";
+
+    //数据库参数
+    public static final String USERNAME = "root";
+    public static final String PASSWORD = "root";
+    public static final String URL = "jdbc:mysql://127.0.0.1:3306/speedcar?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false";
+    //======================================↑↑↑↑↑ 开发环境 ↑↑↑↑↑=========================================================
+
+
+    //======================================↓↓↓↓↓ 正式环境 ↓↓↓↓↓=========================================================
+//    public static final String FILE_UPLOAD_PATH = "E:\\MyProject\\Prototype\\upload"; //文件上传路径
+//    public static final String FILE_DOWNLOAD_PATH = "E:\\MyProject\\Prototype\\tempDownload";//文件下载临时存放路径
+//
+//    //微信参数
+//    public static final String ip = "http://47.98.232.129:80/";
+//    public static final String token = "speedcarbeauty";
+//    public static final String AppId = "wx730ca227145f4c64";
+//    public static final String AppSecret = "cf78969c401ed743066d2d0096423775";
+//    public static final String EncodingAESKey = "rYI8cqDTNJtDpi2PCHTzGwCR6eMpd89cUY9c1wL9CPp";
+
+//    //数据库参数
+//    public static final String USERNAME = "root";
+//    public static final String PASSWORD = "root";
+//    public static final String URL = "jdbc:mysql://127.0.0.1:3306/speedcar?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false";
+    //======================================↑↑↑↑↑ 正式环境 ↑↑↑↑↑=========================================================
 
 
     /**
@@ -38,7 +69,7 @@ public class Constant {
      *
      * @return
      */
-    public static final String GETINDEXPATH() {
+    public static final String getIndexPath() {
         //获取跟目录
         File path = null;
         try {

@@ -1,17 +1,17 @@
 package com.cx.prototype.mode.weChat.util;
 
 
+import com.cx.prototype.util.entity.Constant;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class WechatUtil {
 
-    //    private final static String appid = Global.getConfig("appid");
-//    private final static String secret = Global.getConfig("secret");
-//    private final static String token = Global.getConfig("token");
-    private final static String appid = "";
-    private final static String secret = "";
-    private final static String token = "";
+
+    private final static String appid = Constant.AppId;
+    private final static String secret = Constant.AppSecret;
+    private final static String token = Constant.token;
 
     public static String getAppid() {
         return appid;

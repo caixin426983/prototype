@@ -13,4 +13,7 @@ import org.springframework.stereotype.Repository;
 public interface TMemberMapper extends BaseMapper<TMember> {
 
 
+
+
+
 }

@@ -5,50 +5,48 @@ import com.baomidou.mybatisplus.annotations.TableName;
 import com.cx.prototype.util.entity.BaseEntity;
 
 
-
 /**
  * @author cx123
  * @since 2019-04-19
  */
 @TableName("t_commodity")
-public class TCommodity extends BaseEntity{
-
+public class TCommodity extends BaseEntity {
 
 
     private static final long serialVersionUID = 1L;
 
-        /**
-         * 商品名称
-         */
-        private String name;
-        /**
-         * 图片1
-         */
-        private String img1;
-        /**
-         * 图片2
-         */
-        private String img2;
-        /**
-         * 图片3
-         */
-        private String img3;
-        /**
-         * 类型(保留字段)
-         */
-        private Integer type;
-        /**
-         * 标题
-         */
-        private String title;
-        /**
-         * 描述
-         */
-        private String describe;
-        /**
-         * 对应积分
-         */
-        private Integer integral;
+    /**
+     * 商品名称
+     */
+    private String name;
+    /**
+     * 图片1
+     */
+    private String img1;
+    /**
+     * 图片2
+     */
+    private String img2;
+    /**
+     * 图片3
+     */
+    private String img3;
+    /**
+     * 类型(保留字段)
+     */
+    private Integer type;
+    /**
+     * 标题
+     */
+    private String title;
+    /**
+     * 描述
+     */
+    private String describe;
+    /**
+     * 对应积分
+     */
+    private Integer integral;
 
     /**
      * 库存
@@ -59,74 +57,70 @@ public class TCommodity extends BaseEntity{
      */
     private Integer state;
 
-    
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public String getImg1() {
+        return img1;
+    }
 
-             public String getName() {
-                return name;
-                }
+    public void setImg1(String img1) {
+        this.img1 = img1;
+    }
 
-            public void setName(String name) {
-                this.name = name;
-                }
+    public String getImg2() {
+        return img2;
+    }
 
-             public String getImg1() {
-                return img1;
-                }
+    public void setImg2(String img2) {
+        this.img2 = img2;
+    }
 
-            public void setImg1(String img1) {
-                this.img1 = img1;
-                }
+    public String getImg3() {
+        return img3;
+    }
 
-             public String getImg2() {
-                return img2;
-                }
+    public void setImg3(String img3) {
+        this.img3 = img3;
+    }
 
-            public void setImg2(String img2) {
-                this.img2 = img2;
-                }
+    public Integer getType() {
+        return type;
+    }
 
-             public String getImg3() {
-                return img3;
-                }
+    public void setType(Integer type) {
+        this.type = type;
+    }
 
-            public void setImg3(String img3) {
-                this.img3 = img3;
-                }
+    public String getTitle() {
+        return title;
+    }
 
-             public Integer getType() {
-                return type;
-                }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-            public void setType(Integer type) {
-                this.type = type;
-                }
+    public String getDescribe() {
+        return describe;
+    }
 
-             public String getTitle() {
-                return title;
-                }
+    public void setDescribe(String describe) {
+        this.describe = describe;
+    }
 
-            public void setTitle(String title) {
-                this.title = title;
-                }
+    public Integer getIntegral() {
+        return integral;
+    }
 
-             public String getDescribe() {
-                return describe;
-                }
-
-            public void setDescribe(String describe) {
-                this.describe = describe;
-                }
-
-             public Integer getIntegral() {
-                return integral;
-                }
-
-            public void setIntegral(Integer integral) {
-                this.integral = integral;
-                }
+    public void setIntegral(Integer integral) {
+        this.integral = integral;
+    }
 
 
     public Integer getStock() {

@@ -6,6 +6,9 @@ import com.cx.prototype.mode.entity.TMember;
 import com.cx.prototype.util.entity.PageParam;
 import com.cx.prototype.util.entity.ResultBean;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 
 /**
  *
@@ -24,5 +27,5 @@ public interface TMemberService {
 
         int delete(Long id);
 
-
+        void export(HttpServletRequest request, HttpServletResponse response);
 }

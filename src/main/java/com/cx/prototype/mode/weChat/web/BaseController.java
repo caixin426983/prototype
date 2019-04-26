@@ -17,7 +17,7 @@ import java.util.Map;
 
 
 @Controller
-@RequestMapping(value = "/code/weChat/base")
+@RequestMapping(value = "/weChat/base")
 public class BaseController {
 
     /**
@@ -54,7 +54,7 @@ public class BaseController {
     public void getCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         //这里要将你的授权回调地址处理一下，否则微信识别不了
-        String redirect_uri = URLEncoder.encode("http://yaan.cdoservice.com/Rencai/code/weChat/base/getOpenId", "UTF-8");
+        String redirect_uri = URLEncoder.encode("http://yaan.cdoservice.com/Rencai/weChat/base/getOpenId", "UTF-8");
         //简单获取openid的话参数response_type与scope与state参数固定写死即可
 
         StringBuffer url = new StringBuffer("https://open.weixin.qq.com/connect/oauth2/authorize?redirect_uri=" + redirect_uri +
