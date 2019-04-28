@@ -3,6 +3,7 @@ package com.cx.prototype.mode.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.cx.prototype.mode.entity.TMember;
 import com.cx.prototype.mode.mapper.TMemberMapper;
+import com.cx.prototype.mode.pojo.TMemberPojo;
 import com.cx.prototype.mode.service.TMemberService;
 import com.cx.prototype.util.entity.PageParam;
 import com.cx.prototype.util.entity.ResultBean;
@@ -17,12 +18,13 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ResourceUtils;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.List;
@@ -72,19 +74,24 @@ public class TMemberServiceImpl extends CrudService<TMemberMapper, TMember> impl
         return this.deleteById(id);
     }
 
+
     @Override
     public void export(HttpServletRequest request, HttpServletResponse response) {
-        List<TMember> list = this.memberMapper.selectList(null);
+        List<TMemberPojo> list = this.memberMapper.exportMember();
         //拿取导出模板
-        ServletContext servletContext = request.getSession().getServletContext();
         String templatePath = "";
+        try {
+            templatePath = ResourceUtils.getURL("classpath:exportTem/Member.xlsx").getPath();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         FileInputStream io = null;
         ServletOutputStream outputStream = null;
         try {
             response.setContentType("application/octet-stream; charset=utf-8");
             String fileName = "会员信息汇总.xls";
-            response.setHeader("Content-disposition", "attachment; filename=" + new String((fileName).getBytes("gb2312"), "ISO8859-1"));
+            response.setHeader("Content-disposition", "attachment; filename=" + new String((fileName).getBytes("UTF-8"), "ISO8859-1"));
             outputStream = response.getOutputStream();
             io = new FileInputStream(templatePath);
             Workbook wb = null;
@@ -103,8 +110,8 @@ public class TMemberServiceImpl extends CrudService<TMemberMapper, TMember> impl
             //构建数据表格
             if (list != null && list.size() > 0) {
                 for (int i = 0; i < list.size(); i++) {
-                    Row bodyRow = sheet.createRow(i + 2);
-                    TMember pojo = list.get(i);
+                    Row bodyRow = sheet.createRow(i + 1);
+                    TMemberPojo pojo = list.get(i);
                     Field[] fields = pojo.getClass().getDeclaredFields();
                     Cell cell0 = bodyRow.createCell(0);
                     cell0.setCellStyle(bodyStyle);

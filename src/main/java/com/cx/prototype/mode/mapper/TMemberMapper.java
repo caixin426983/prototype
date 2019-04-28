@@ -2,7 +2,10 @@ package com.cx.prototype.mode.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.cx.prototype.mode.entity.TMember;
+import com.cx.prototype.mode.pojo.TMemberPojo;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 
 /**
@@ -13,7 +16,7 @@ import org.springframework.stereotype.Repository;
 public interface TMemberMapper extends BaseMapper<TMember> {
 
 
-
+    List<TMemberPojo> exportMember();
 
 
 }
