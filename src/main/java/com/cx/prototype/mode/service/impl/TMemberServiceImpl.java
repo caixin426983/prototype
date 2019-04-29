@@ -7,7 +7,7 @@ import com.cx.prototype.mode.pojo.TMemberPojo;
 import com.cx.prototype.mode.service.TMemberService;
 import com.cx.prototype.util.entity.PageParam;
 import com.cx.prototype.util.entity.ResultBean;
-import com.cx.prototype.util.excel.ExportExcel;
+import com.cx.prototype.common.excel.ExportExcel;
 import com.cx.prototype.util.service.CrudService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -90,8 +90,8 @@ public class TMemberServiceImpl extends CrudService<TMemberMapper, TMember> impl
         ServletOutputStream outputStream = null;
         try {
             response.setContentType("application/octet-stream; charset=utf-8");
-            String fileName = "会员信息汇总.xls";
-            response.setHeader("Content-disposition", "attachment; filename=" + new String((fileName).getBytes("UTF-8"), "ISO8859-1"));
+            String fileName = "会员信息汇总.xlsx";
+            response.setHeader("Content-disposition", "attachment; filename=" + new String((fileName.getBytes("UTF-8")), "iso-8859-1"));
             outputStream = response.getOutputStream();
             io = new FileInputStream(templatePath);
             Workbook wb = null;

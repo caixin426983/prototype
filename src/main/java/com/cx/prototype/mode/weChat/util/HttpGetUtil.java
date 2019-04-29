@@ -1,9 +1,5 @@
 package com.cx.prototype.mode.weChat.util;
 
-import com.sun.deploy.net.HttpResponse;
-
-import sun.net.www.http.HttpClient;
-
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;

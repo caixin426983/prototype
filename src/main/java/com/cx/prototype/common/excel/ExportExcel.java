@@ -1,4 +1,4 @@
-package com.cx.prototype.util.excel;
+package com.cx.prototype.common.excel;
 
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;

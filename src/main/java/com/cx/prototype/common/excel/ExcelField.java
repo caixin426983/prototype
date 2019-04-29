@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.cx.prototype.util.excel;
+package com.cx.prototype.common.excel;
 
 
 import java.lang.annotation.ElementType;
